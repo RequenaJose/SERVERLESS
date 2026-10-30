@@ -1,0 +1,37 @@
+body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f7f6; margin: 0; padding: 0; color: #333; }
+.navbar { background-color: #1a252f; color: white; padding: 15px 20px; display: flex; flex-direction: column; align-items: center; }
+.navbar h1 { margin: 0 0 15px 0; font-size: 1.5rem; }
+.nav-links { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; }
+.nav-links button { background: #2c3e50; color: white; border: none; padding: 10px 15px; border-radius: 4px; cursor: pointer; transition: 0.3s; font-weight: bold; }
+.nav-links button:hover { background: #34495e; }
+.nav-links button.active { background: #3498db; }
+
+.content { max-width: 1000px; margin: 30px auto; padding: 0 20px; }
+.view { display: none; animation: fadeIn 0.3s; }
+.view.active { display: block; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+.welcome-box { text-align: center; padding: 50px; background: white; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+.card { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); margin-bottom: 20px; }
+.center-content { text-align: center; }
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.mt-15 { margin-top: 15px; }
+.hidden { display: none; }
+
+button { padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; }
+.btn-primary { background-color: #2980b9; color: white; }
+.btn-secondary { background-color: #95a5a6; color: white; }
+.btn-sos { background-color: #e74c3c; color: white; font-size: 1.5rem; padding: 20px 40px; border-radius: 50px; box-shadow: 0 4px 15px rgba(231, 76, 60, 0.4); }
+.btn-sos:active { transform: scale(0.95); }
+
+table { width: 100%; border-collapse: collapse; }
+th, td { border: 1px solid #ddd; padding: 10px; text-align: left; }
+th { background-color: #ecf0f1; }
+input[type="text"] { width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
+
+.status-panel { display: none; padding: 15px; border-radius: 4px; font-weight: 500; }
+.status-success { background-color: #d4efdf; color: #145a32; border-left: 5px solid #27ae60; }
+.status-warning { background-color: #fcf3cf; color: #7d6608; border-left: 5px solid #f1c40f; }
+
+.monitor-box { background: #2c3e50; color: white; padding: 15px; border-radius: 8px; }
+.vital-sign { font-size: 1.2rem; font-weight: bold; color: #1abc9c; }

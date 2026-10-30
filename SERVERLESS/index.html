@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal Integrado SAMU & SAER</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Barra de Navegación -->
+    <header class="navbar">
+        <h1>Portal Integrado de Salud</h1>
+        <nav class="nav-links">
+            <button onclick="switchView('home')" class="active" id="nav-home">Inicio</button>
+            <button onclick="switchView('hu1')" id="nav-hu1">HU 1: Alerta SOS</button>
+            <button onclick="switchView('hu2')" id="nav-hu2">HU 2: Monitoreo Ambulancias</button>
+            <button onclick="switchView('hu3')" id="nav-hu3">HU 3: Derivación Inteligente</button>
+            <button onclick="switchView('hu4')" id="nav-hu4">HU 4: Receta Electrónica</button>
+        </nav>
+    </header>
+
+    <main class="content">
+        <!-- Vista: Inicio (Portal Simple) -->
+        <section id="home" class="view active">
+            <div class="welcome-box">
+                <h2>Bienvenido al Portal Integrado</h2>
+                <p>Seleccione un módulo en la parte superior para comenzar.</p>
+            </div>
+        </section>
+
+        <!-- Vista: HU 1 - Alerta SOS -->
+        <section id="hu1" class="view">
+            <h2>Alerta de Emergencia SOS</h2>
+            <div class="card center-content">
+                <p><strong>Ubicación GPS:</strong> Lat: -12.0464, Lng: -77.0428 (Precisión: 5m)</p>
+                <button id="btnSos" class="btn-sos">🚨 ENVIAR ALERTA SOS 🚨</button>
+                <div id="sosStatus" class="status-panel mt-15"></div>
+            </div>
+        </section>
+
+        <!-- Vista: HU 2 - Monitoreo de Ambulancias -->
+        <section id="hu2" class="view">
+            <h2>Monitoreo en Tiempo Real (SAMU 106)</h2>
+            <div class="card grid-2">
+                <div class="monitor-box">
+                    <h3>Ambulancia AMB-042 (En Ruta)</h3>
+                    <p><strong>Ubicación:</strong> <span id="ambLat">-12.0510</span>, <span id="ambLng">-77.0350</span></p>
+                    <p><strong>Estado de Red:</strong> <span id="ambConn" style="color: green;">Conectado (MQTT)</span></p>
+                </div>
+                <div class="monitor-box">
+                    <h3>Signos Vitales del Paciente</h3>
+                    <p class="vital-sign">Oximetría (SpO2): <span id="spo2">98</span>%</p>
+                    <p class="vital-sign">Frec. Cardíaca (ECG): <span id="ecg">85</span> bpm</p>
+                </div>
+            </div>
+            <button id="btnToggleConn" class="btn-secondary">Simular Pérdida de Conexión</button>
+        </section>
+
+        <!-- Vista: HU 3 - Derivación Inteligente -->
+        <section id="hu3" class="view">
+            <h2>Consulta de Disponibilidad Hospitalaria</h2>
+            <div class="card">
+                <button id="btnConsultarCamas" class="btn-primary">Consultar Camas (Huancayo, Tarma, etc.)</button>
+                <div id="camasStatus" class="status-panel mt-15"></div>
+                <table id="tablaHospitales" class="mt-15 hidden">
+                    <thead>
+                        <tr>
+                            <th>Establecimiento</th>
+                            <th>Ubicación</th>
+                            <th>Camas UCI</th>
+                            <th>Urgencias</th>
+                            <th>Distancia</th>
+                            <th>Estado de Datos</th>
+                        </tr>
+                    </thead>
+                    <tbody id="listaHospitales"></tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Vista: HU 4 - Receta Electrónica -->
+        <section id="hu4" class="view">
+            <h2>Emisión de Receta Electrónica con Firma Digital</h2>
+            <form id="recetaForm" class="card">
+                <div class="grid-2">
+                    <div>
+                        <label>Médico DNI / CMP:</label>
+                        <input type="text" value="70654321 / CMP-45892" readonly>
+                    </div>
+                    <div>
+                        <label>ID Paciente:</label>
+                        <input type="text" id="pacienteId" value="PAC-987654" readonly>
+                    </div>
+                </div>
+                <div class="form-group mt-15">
+                    <label>Diagnóstico:</label>
+                    <input type="text" id="diagnostico" value="Faringitis aguda" required>
+                </div>
+                <table class="mt-15">
+                    <thead><tr><th>Medicamento</th><th>Dosis</th><th>Frecuencia</th><th>Duración</th></tr></thead>
+                    <tbody>
+                        <tr>
+                            <td><input type="text" value="Amoxicilina 500mg" class="med"></td>
+                            <td><input type="text" value="1 tableta" class="dosis"></td>
+                            <td><input type="text" value="Cada 8 horas" class="freq"></td>
+                            <td><input type="text" value="7 días" class="dur"></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div id="recetaStatus" class="status-panel mt-15"></div>
+                <div class="actions mt-15">
+                    <button type="submit" id="btnEmitirReceta" class="btn-primary">✍️ Emitir y Firmar Digitalmente</button>
+                </div>
+            </form>
+        </section>
+    </main>
+    <script src="js/app.js"></script>
+</body>
+</html>
