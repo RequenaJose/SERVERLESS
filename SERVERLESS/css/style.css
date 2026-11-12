@@ -67,3 +67,54 @@ input[type="text"] { width: 100%; padding: 8px; border: 1px solid #ccc; border-r
 .btn-solid-blue { background: #1976D2; border: 1px solid #1976D2; color: white; }
 .btn-outline-grey { background: white; border: 1px solid #9e9e9e; color: #616161; }
 
+/* --- ESTILOS HU 2: MONITOREO SALA DE URGENCIAS --- */
+.hu2-container { max-width: 900px; margin: 20px auto; background-color: #E8ECEE; border: 1px solid #CCC; border-radius: 4px; font-family: 'Segoe UI', Tahoma, sans-serif; }
+.hu2-header { background-color: #216169; color: white; padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; border-radius: 4px 4px 0 0; }
+.badge-mqtt { background-color: #2E8B57; color: white; padding: 5px 15px; border-radius: 20px; font-size: 13px; font-weight: bold; box-shadow: inset 0 1px 3px rgba(0,0,0,0.3); }
+.hu2-content { padding: 20px; }
+
+.info-panel { background: white; border: 1px solid #D0D0D0; border-radius: 4px; margin-bottom: 15px; padding: 15px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+.panel-header { font-size: 13px; color: #555; font-weight: bold; text-transform: uppercase; margin-bottom: 12px; border-bottom: 1px solid #EEE; padding-bottom: 5px; }
+
+.emerg-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 15px; font-size: 14px; }
+.foto-placeholder { background: #f0f0f0; border: 1px dashed #ccc; height: 80px; display: flex; align-items: center; justify-content: center; color: #999; margin-top: 5px; border-radius: 4px; }
+
+.route-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; background: #F8F9FA; padding: 10px; border-radius: 4px; border: 1px solid #E9ECEF; font-size: 14px; }
+.highlight-text { font-weight: bold; color: #216169; }
+
+.vitals-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 15px; }
+.vital-card { background: #F8F9FA; padding: 15px; border-radius: 4px; border: 1px solid #E9ECEF; }
+.vital-title { font-size: 12px; font-weight: bold; color: #555; }
+.vital-value { font-size: 28px; font-weight: bold; color: #333; margin: 5px 0; }
+.vital-alert { font-size: 14px; font-weight: bold; color: #D32F2F; }
+
+.ecg-box { background: #F8F9FA; padding: 15px; border-radius: 4px; border: 1px solid #E9ECEF; }
+.ecg-wave { background-color: #E8ECEE; color: #2E8B57; padding: 10px; font-family: monospace; font-size: 18px; letter-spacing: 2px; overflow: hidden; white-space: nowrap; border-radius: 4px; }
+
+.hu2-actions { display: flex; align-items: center; gap: 15px; background: white; padding: 15px; border: 1px solid #D0D0D0; border-radius: 4px; }
+.btn-action { padding: 12px 20px; border: none; border-radius: 4px; font-weight: bold; cursor: pointer; color: white; flex: 1; }
+.btn-shock { background-color: #D9534F; }
+.btn-uci { background-color: #218838; }
+
+/* Panel de Control y Selector de Distrito */
+.control-panel { background: #fff; padding: 15px; margin-bottom: 15px; border-radius: 4px; border: 1px solid #ccc; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+.distrito-selector { margin-bottom: 15px; display: flex; flex-direction: column; gap: 5px; }
+.distrito-selector label { font-size: 12px; font-weight: bold; color: #555; }
+.distrito-selector select { padding: 8px; border-radius: 4px; border: 1px solid #ccc; max-width: 300px; }
+
+/* Contenedor de Fichas (Tarjetas de Casos) */
+.fichas-container { display: flex; gap: 10px; overflow-x: auto; padding-bottom: 10px; }
+.ficha-caso { background: #F8F9FA; border: 1px solid #D0D0D0; border-radius: 6px; padding: 10px; min-width: 220px; cursor: pointer; transition: all 0.2s ease; border-left: 4px solid #999; }
+.ficha-caso:hover { background: #E8ECEE; }
+.ficha-caso.activa { background: #E0F7FA; border: 1px solid #00BCD4; border-left: 4px solid #0097A7; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+.ficha-titulo { font-size: 13px; font-weight: bold; color: #333; margin-bottom: 4px; }
+.ficha-desc { font-size: 11px; color: #666; }
+.ficha-estado { font-size: 10px; font-weight: bold; margin-top: 5px; color: #D32F2F; }
+
+/* Caja de Destino y Botón de Redirección */
+.destino-box { margin-top: 15px; padding: 10px 15px; background: #FFF3E0; border: 1px solid #FFE0B2; border-radius: 4px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
+.redirect-actions { display: flex; gap: 10px; }
+.redirect-actions select { padding: 8px; border-radius: 4px; border: 1px solid #ccc; }
+.btn-redirigir { background: #E65100; color: white; border: none; padding: 8px 15px; border-radius: 4px; cursor: pointer; font-weight: bold; transition: background 0.2s; }
+.btn-redirigir:hover { background: #BF360C; }
+.btn-redirigir:disabled { background: #ccc; cursor: not-allowed; }

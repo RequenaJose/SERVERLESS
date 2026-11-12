@@ -90,20 +90,107 @@
 
         <!-- Vista: HU 2 - Monitoreo de Ambulancias -->
         <section id="hu2" class="view">
-            <h2>Monitoreo en Tiempo Real (SAMU 106)</h2>
-            <div class="card grid-2">
-                <div class="monitor-box">
-                    <h3>Ambulancia AMB-042 (En Ruta)</h3>
-                    <p><strong>Ubicación:</strong> <span id="ambLat">-12.0510</span>, <span id="ambLng">-77.0350</span></p>
-                    <p><strong>Estado de Red:</strong> <span id="ambConn" style="color: green;">Conectado (MQTT)</span></p>
+            <div class="hu2-container" style="max-width: 1000px;">
+                <!-- Cabecera -->
+                <div class="hu2-header">
+                    <h2 style="margin: 0;">🚑 MONITOREO DE AMBULANCIAS EN RUTA (JUNÍN)</h2>
+                    <span class="badge-mqtt">● Streaming MQTT Activo</span>
                 </div>
-                <div class="monitor-box">
-                    <h3>Signos Vitales del Paciente</h3>
-                    <p class="vital-sign">Oximetría (SpO2): <span id="spo2">98</span>%</p>
-                    <p class="vital-sign">Frec. Cardíaca (ECG): <span id="ecg">85</span> bpm</p>
+
+                <div class="hu2-content">
+                    <!-- PANEL DE CONTROL: DISTRITO Y FICHAS DE CASOS -->
+                    <div class="control-panel">
+                        <div class="distrito-selector">
+                            <label>📍 FILTRAR POR DISTRITO / REGIÓN:</label>
+                            <select id="selDistrito">
+                                <option value="120101">Huancayo - Centro</option>
+                                <option value="120114">El Tambo</option>
+                                <option value="120107">Chilca</option>
+                            </select>
+                        </div>
+                        
+                        <label style="font-size: 12px; font-weight: bold; color: #555; display: block; margin-bottom: 8px;">🚑 CASOS ACTIVOS (FICHAS):</label>
+                        <div id="contenedorFichas" class="fichas-container">
+                            <!-- Las fichas se generarán dinámicamente con JS -->
+                        </div>
+                    </div>
+
+                    <!-- DETALLE DEL CASO SELECCIONADO -->
+                    <div id="detalleCaso" style="display: none;">
+                        <!-- Sección Superior: Datos de la Emergencia -->
+                        <div class="info-panel emerg-info">
+                            <div class="panel-header">📋 DATOS DE LA EMERGENCIA (<span id="mon-ticket">--</span>)</div>
+                            <div class="emerg-grid">
+                                <div>
+                                    <p><strong>📍 Ubicación:</strong> <span id="mon-ubicacion-emerg">--</span></p>
+                                    <p><strong>⚠️ Descripción:</strong> <span id="mon-desc">--</span></p>
+                                </div>
+                                <div class="foto-evidencia">
+                                    <span style="color: #666; font-size: 12px;">📷 Fotografía</span>
+                                    <div class="foto-placeholder">Sin imagen</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Sección Media: Ruta y Redirección -->
+                        <div class="info-panel route-info">
+                            <div class="panel-header">🛣️ ESTADO DE RUTA Y GPS EN TIEMPO REAL</div>
+                            <div class="route-grid">
+                                <div><strong>Ambulancia:</strong> <span id="mon-unidad" class="highlight-text">--</span></div>
+                                <div><strong>Velocidad:</strong> <span id="mon-vel">0</span> km/h</div>
+                                <div><strong>ETA:</strong> <span id="mon-eta" class="highlight-text">--</span></div>
+                            </div>
+                            
+                            <p style="margin-top: 10px; font-size: 13px;"><strong>GPS Actual:</strong> <span id="mon-gps">--</span></p>
+
+                            <!-- Caja de Destino y Redirección -->
+                            <div class="destino-box">
+                                <div>
+                                    <span style="font-size: 12px; color: #E65100; font-weight: bold;">🏥 DESTINO ACTUAL:</span><br>
+                                    <strong id="mon-destino" style="font-size: 15px;">--</strong>
+                                </div>
+                                <div class="redirect-actions">
+                                    <select id="selNuevoDestino">
+                                        <option value="Hospital Regional Docente">Hospital Regional Docente</option>
+                                        <option value="Hospital Carrión">Hospital Carrión</option>
+                                        <option value="Clínica Ortega">Clínica Ortega</option>
+                                        <option value="EsSalud Ramiro Prialé">EsSalud Ramiro Prialé</option>
+                                    </select>
+                                    <button id="btnRedirigir" class="btn-redirigir">🔄 Redirigir</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Sección Inferior: Telemetría Médica -->
+                        <div class="info-panel telemetry-info">
+                            <div class="panel-header">📊 TELEMETRÍA MÉDICA EN TIEMPO REAL</div>
+                            <div class="vitals-grid">
+                                <div class="vital-card">
+                                    <div class="vital-title">FRECUENCIA CARDÍACA (FC)</div>
+                                    <div class="vital-value"><span id="mon-fc">--</span> BPM</div>
+                                    <div id="mon-alert-fc" class="vital-alert">--</div>
+                                </div>
+                                <div class="vital-card">
+                                    <div class="vital-title">SATURACIÓN DE OXÍGENO (SpO2)</div>
+                                    <div class="vital-value"><span id="mon-spo2">--</span> %</div>
+                                    <div id="mon-alert-spo2" class="vital-alert">--</div>
+                                </div>
+                            </div>
+                            <div class="ecg-box">
+                                <div class="vital-title" style="margin-bottom: 5px;">ELECTROCARDIOGRAMA (ECG EN VIVO)</div>
+                                <div class="ecg-wave" id="mon-ecg">/\_/\_/\_/\_/\_/\_</div>
+                            </div>
+                        </div>
+
+                        <!-- Botones de Acción -->
+                        <div class="hu2-actions">
+                            <span style="font-weight: bold; color: #555;">ACCIÓN SALA DE TRAUMA:</span>
+                            <button class="btn-action btn-shock">🚨 PREPARAR SHOCK TRAUMA</button>
+                            <button class="btn-action btn-uci">🏥 ASIGNAR CAMA UCI</button>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <button id="btnToggleConn" class="btn-secondary">Simular Pérdida de Conexión</button>
         </section>
 
         <!-- Vista: HU 3 - Derivación Inteligente -->
