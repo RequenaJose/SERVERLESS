@@ -98,3 +98,63 @@ document.getElementById('recetaForm').addEventListener('submit', (e) => {
         btn.innerText = '✅ Receta Emitida Exitosamente';
     }, 1500);
 });
+
+document.addEventListener('DOMContentLoaded', () => {
+    const btnSOS = document.getElementById('btnActivarSOS');
+    
+    if(btnSOS) {
+        btnSOS.addEventListener('click', async () => {
+            const originalText = btnSOS.innerText;
+            // 1. Cambiar el texto de carga:
+            btnSOS.innerText = "⏳ ENVIANDO REGISTRO...";
+            btnSOS.style.backgroundColor = "#B71C1C";
+            btnSOS.disabled = true;
+
+            const descripcion = document.getElementById('txtDescripcion').value;
+
+            try {
+                const response = await fetch('src/adapters/in/controllers/SOSController.php', {
+                    // ... fetch body (se mantiene igual) ...
+                });
+
+                const json = await response.json();
+
+                if(json.success) {
+                    document.getElementById('lblTicketRes').innerText = json.data.ticket;
+                    document.getElementById('alertaExito').style.display = 'block';
+                    
+                    // 2. Cambiar el texto de éxito:
+                    btnSOS.innerText = "✅ REGISTRO ENVIADO";
+                    btnSOS.style.backgroundColor = "#4CAF50"; 
+                }
+            } catch (error) {
+                console.error("Error al enviar registro:", error);
+                alert("Hubo un error de conexión, intentando reconectar...");
+                btnSOS.innerText = originalText;
+                btnSOS.disabled = false;
+            }
+        });
+    }
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    // 1. Lógica para cambiar entre pestañas del menú
+    const navButtons = document.querySelectorAll('.nav-btn'); // Asume que tus botones del menú tienen esta clase
+    const views = document.querySelectorAll('.view');
+
+    navButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const targetId = button.getAttribute('data-target'); // Ej: data-target="hu1"
+
+            // Ocultar todas las vistas y quitar el estado activo de los botones
+            views.forEach(view => view.classList.remove('active'));
+            navButtons.forEach(btn => btn.classList.remove('active'));
+
+            // Mostrar la vista objetivo y marcar el botón como activo
+            document.getElementById(targetId).classList.add('active');
+            button.classList.add('active');
+        });
+    });
+
+    // ... (Aquí mantienes la lógica del botón SOS y de la ambulancia que ya tenías) ...
+});

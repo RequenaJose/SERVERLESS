@@ -35,3 +35,35 @@ input[type="text"] { width: 100%; padding: 8px; border: 1px solid #ccc; border-r
 
 .monitor-box { background: #2c3e50; color: white; padding: 15px; border-radius: 8px; }
 .vital-sign { font-size: 1.2rem; font-weight: bold; color: #1abc9c; }
+
+/* --- ESTILOS HU 1: ALERTA SOS --- */
+.hu1-container { max-width: 800px; margin: 20px auto; background-color: #f9fbfd; border-radius: 8px; font-family: 'Segoe UI', Tahoma, sans-serif; }
+.hu1-header { background-color: #1976D2; color: white; padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; border-radius: 8px 8px 0 0; }
+.badge-active { background-color: #388E3C; color: white; padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: bold; }
+.hu1-content { padding: 15px; }
+
+.hu1-card { background: white; border: 1px solid #e0e0e0; border-radius: 6px; padding: 15px; margin-bottom: 15px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+.card-title-blue { color: #5c748c; font-size: 13px; font-weight: bold; margin-bottom: 10px; }
+.card-title-orange { color: #E65100; font-size: 13px; font-weight: bold; margin-bottom: 10px; }
+.gps-status { background-color: #E8F5E9; color: #2E7D32; padding: 10px; border-radius: 4px; border: 1px solid #C8E6C9; font-size: 14px; }
+
+.input-row { display: flex; gap: 10px; }
+.textarea-desc { flex: 1; height: 70px; padding: 10px; border: 1px solid #ccc; border-radius: 4px; resize: none; font-family: inherit; }
+.btn-mic { background-color: #f5f5f5; border: 1px solid #ccc; border-radius: 4px; width: 70px; cursor: pointer; font-size: 12px; color: #555; }
+.btn-mic:hover { background-color: #e0e0e0; }
+
+.upload-area { display: block; background-color: #fafafa; border: 2px dashed #ccc; border-radius: 6px; text-align: center; padding: 20px; cursor: pointer; color: #666; font-size: 13px; }
+.upload-area:hover { background-color: #f0f0f0; border-color: #999; }
+
+.btn-sos-main { width: 100%; background-color: #E53935; color: white; border: none; padding: 18px; border-radius: 6px; font-size: 18px; font-weight: bold; cursor: pointer; margin-bottom: 15px; box-shadow: 0 4px 6px rgba(229,57,53,0.3); }
+.btn-sos-main:hover { background-color: #D32F2F; }
+
+.alert-success-box { background-color: #E8F5E9; border: 1px solid #A5D6A7; padding: 15px; border-radius: 6px; margin-bottom: 15px; color: #1b5e20; }
+.alert-success-box p { margin: 4px 0; font-size: 14px; }
+
+.hu1-footer { border: 1px solid #e0e0e0; background: white; padding: 15px; border-radius: 6px; display: flex; justify-content: space-between; gap: 10px; }
+.btn-footer { flex: 1; padding: 10px; border-radius: 4px; font-weight: bold; cursor: pointer; font-size: 13px; }
+.btn-outline-red { background: white; border: 1px solid #E53935; color: #E53935; }
+.btn-solid-blue { background: #1976D2; border: 1px solid #1976D2; color: white; }
+.btn-outline-grey { background: white; border: 1px solid #9e9e9e; color: #616161; }
+

@@ -30,11 +30,61 @@
 
         <!-- Vista: HU 1 - Alerta SOS -->
         <section id="hu1" class="view">
-            <h2>Alerta de Emergencia SOS</h2>
-            <div class="card center-content">
-                <p><strong>Ubicación GPS:</strong> Lat: -12.0464, Lng: -77.0428 (Precisión: 5m)</p>
-                <button id="btnSos" class="btn-sos">🚨 ENVIAR ALERTA SOS 🚨</button>
-                <div id="sosStatus" class="status-panel mt-15"></div>
+            <div class="hu1-container">
+                <!-- Cabecera -->
+                <div class="hu1-header">
+                    <h2 style="margin: 0;">🚨 SAMU 106 - REGIONAL</h2>
+                    <span class="badge-active">● Sistema Activo</span>
+                </div>
+
+                <div class="hu1-content">
+                    <!-- Geolocalización y Mapa -->
+                    <div class="hu1-card">
+                        <div class="card-title-blue">📍 UBICACIÓN GEOLOCALIZADA</div>
+                        <div class="gps-status">
+                            🟢 <strong>GPS DETECTADO:</strong> Av. Giráldez 230, Huancayo (Precisión: ±3m)
+                        </div>
+                        <div class="map-placeholder">
+                            <!-- Google Maps Iframe de muestra -->
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3901.768783424168!2d-75.2078652238421!3d-12.066289942261623!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x910e964f48a972c3%3A0xc3191f63c8da3565!2sAv.%20Giraldez%2C%20Huancayo%2012000!5e0!3m2!1ses-419!2spe!4v1700000000000!5m2!1ses-419!2spe" width="100%" height="150" style="border:0; border-radius: 6px; margin-top: 10px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        </div>
+                    </div>
+
+                    <!-- Descripción de la Emergencia -->
+                    <div class="hu1-card">
+                        <div class="card-title-orange">⚠️ DESCRIPCIÓN DE LA EMERGENCIA</div>
+                        <div class="input-row">
+                            <textarea id="txtDescripcion" class="textarea-desc" placeholder="Describa la situación o presione el botón de micrófono para dictar..."></textarea>
+                            <button class="btn-mic" onclick="alert('🎤 Dictado por voz activado (Simulado)')">🎙️<br>Dictar</button>
+                        </div>
+                    </div>
+
+                    <!-- Fotografías -->
+                    <div class="hu1-card">
+                        <div class="card-title-orange">📷 ADJUNTAR FOTOGRAFÍAS (Opcional)</div>
+                        <label class="upload-area" for="fileFotos">
+                            <span style="font-size: 24px; color: #888;">+</span><br>
+                            <span>Toque para tomar foto o adjuntar de la galería</span>
+                            <input type="file" id="fileFotos" multiple accept="image/*" style="display:none;">
+                        </label>
+                    </div>
+
+                    <!-- Botón Principal -->
+                    <button id="btnActivarSOS" class="btn-sos-main">📤 ENVIAR REGISTRO DE EMERGENCIA</button>
+
+                    <!-- Mensaje de Éxito (Oculto por defecto) -->
+                    <div id="alertaExito" class="alert-success-box" style="display:none;">
+                        <p style="color: #2e7d32; font-size: 16px; margin-bottom: 5px;">✅ <strong>¡ALERTA REGISTRADA EXITOSAMENTE!</strong></p>
+                        <p><strong>Número de Ticket:</strong> <span id="lblTicketRes">#TICKET-XXXXX</span></p>
+                        <p><strong>Estado:</strong> Registrado y asignado a central de auxilio rápido en cola de alta prioridad.</p>
+                    </div>
+
+                    <!-- Botones de Acción -->
+                    <div class="hu1-footer">
+                        <button class="btn-footer btn-outline-red">❌ Cancelar</button>
+                        <button class="btn-footer btn-solid-blue">📞 Llamar SAMU 106</button>
+                    </div>
+                </div>
             </div>
         </section>
 
