@@ -65,25 +65,13 @@ document.addEventListener('DOMContentLoaded', () => {
             const descripcion = document.getElementById('txtDescripcion') ? document.getElementById('txtDescripcion').value : '';
 
             // Bloque adaptado a tu código original (asumiendo que mantienes el fetch real o simulado)
-            try {
-                // Simulación para evitar errores si no tienes backend
-                setTimeout(() => {
-                    const elTicket = document.getElementById('lblTicketRes');
-                    if(elTicket) elTicket.innerText = "TKT-" + Math.floor(Math.random() * 1000000);
-                    
-                    const elAlerta = document.getElementById('alertaExito');
-                    if(elAlerta) elAlerta.style.display = 'block';
-                    
-                    btnSOS.innerText = "✅ REGISTRO ENVIADO";
-                    btnSOS.style.backgroundColor = "#4CAF50"; 
-                }, 1200);
-
-            } catch (error) {
-                console.error("Error al enviar registro:", error);
-                alert("Hubo un error de conexión.");
-                btnSOS.innerText = originalText;
-                btnSOS.disabled = false;
-            }
+            const response = await fetch('src/adapters/in/controllers/SOSController.php', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ 
+                    descripcion: descripcion 
+                })
+            });
         });
     }
 
